@@ -53,9 +53,9 @@
   <div class="card-container">
     <div class="img-container" *ngFor="let card of visibleCards" [ngClass]="[card.imageClass || 'similar']">
       <div class="img-text">
-        {{ card.name}}
+        {{ 'Card.' + card.name | translate }}
 
-        <span class="faq" *ngIf="faqHash[card.name]" [tippyProps]="{ allowHTML: true, content: tippyFor(faqHash[card.name]) }" ngxTippy>[faq]</span>
+        <span class="faq" *ngIf="faqHash[card.name]" [tippyProps]="{ allowHTML: true, content: tippyFor(faqHash[card.name]) }" ngxTippy>[{{ 'App.FAQ' | translate }}]</span>
       </div>
 
       <ion-img [src]="'cards/' + card.image + '.png'"></ion-img>
