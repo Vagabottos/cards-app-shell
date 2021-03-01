@@ -70,7 +70,8 @@ export class HomePage implements OnInit {
   }
 
   public tippyFor(entry) {
-    if(!entry) return '';
+    if (!entry) { return ''; }
+
     return entry.map((x, i) => `
       <div class="tt ${i > 0 ? 'tippy-margin-top' : ''}">
         <div class="q">
@@ -88,11 +89,11 @@ export class HomePage implements OnInit {
   public updateCards() {
     this.visibleCards = this.allCards.slice();
 
-    if(this.cardSet !== 'All') {
+    if (this.cardSet !== 'All') {
       this.visibleCards = this.visibleCards.filter(x => x.set.includes(this.cardSet));
     }
 
-    if(this.searchQuery) {
+    if (this.searchQuery) {
       this.visibleCards = this.visibleCards.filter(x => x.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
     }
   }
@@ -123,11 +124,11 @@ export class HomePage implements OnInit {
   }
 
   private async loadFAQ() {
-    if(!this.faqUrl) {
+    if (!this.faqUrl) {
       this.faqHash = {};
       return;
     }
-    
+
     const faq = await fetch(this.faqUrl);
     const entries = await faq.json();
 
