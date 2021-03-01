@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title *ngIf="!isSearchOpen">
+      {{ 'App.Title' | translate }}
+    </ion-title>
+
+    <ion-searchbar *ngIf="isSearchOpen"
+                   color="primary"
+                   showCancelButton="focus"
+                   debounce="300"
+                   (ionCancel)="closeSearch()"
+                   (ionClear)="setSearchValue(null)"
+                   (ionChange)="setSearchValue($event.detail.value)"
+                   [placeholder]="'App.Search' | translate"></ion-searchbar>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleSearch()">
+        <ion-icon name="search" slot="icon-only"></ion-icon>
+      </ion-button>
+
+      <ion-button *ngIf="faqRequestUrl && !isSearchOpen" target="_blank" [href]="faqRequestUrl">
+        {{ 'App.SubmitQuestion' | translate }}
+      </ion-button>
+    </ion-buttons>
+
+    <ion-select slot="end" 
+                [placeholder]="'App.CardSet' | translate" 
+                [interfaceOptions]="{ header: 'Select Card Set' }"
+                (ionChange)="updateCards()"
+                *ngIf="!isSearchOpen"
+                [(ngModel)]="cardSet">
+      <ion-select-option value="All">{{ 'Set.All' | translate }}</ion-select-option>
+      <ion-select-option [value]="set" *ngFor="let set of allSets">{{ 'Set.' + set | translate }}</ion-select-option>
+    </ion-select>
+
+    <ion-select slot="end" 
+                [placeholder]="'App.Language' | translate" 
+                (ionChange)="languageChange()" 
+                [interfaceOptions]="{ header: 'Select Language' }"
+                *ngIf="allLanguages.length > 1 && !isSearchOpen"
+                [(ngModel)]="language">
+      <ion-select-option [value]="lang.code" *ngFor="let lang of allLanguages">{{ lang.name }}</ion-select-option>
+    </ion-select>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <div class="card-container">
+    <div class="img-container" *ngFor="let card of visibleCards" [ngClass]="[card.imageClass || 'similar']">
+      <div class="img-text">
+        {{ card.name}}
+
+        <span class="faq" *ngIf="faqHash[card.name]" [tippyProps]="{ allowHTML: true, content: tippyFor(faqHash[card.name]) }" ngxTippy>[faq]</span>
+      </div>
+
+      <ion-img [src]="'cards/' + card.image + '.png'"></ion-img>
+    </div>
+  </div>
+
+</ion-content>

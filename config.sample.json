@@ -1,0 +1,16 @@
+{
+  "AppTitle": "App Title",
+  "AppShortTitle": "App",
+  "AppDescription": "This cards app is for cards and stuff.",
+  "AppRootDomain": "app.seiyria.com",
+  "AppThemeColor": "#99629a",
+  "AppLanguages": [
+    { "code": "en-US", "name": "English" }
+  ],
+  "AppFAQ": {
+    "en-US": ""
+  },
+  "AppFAQRequest": {
+    "en-US": ""
+  }
+}
