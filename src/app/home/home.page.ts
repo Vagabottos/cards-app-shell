@@ -46,7 +46,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     const cardName = this.route.snapshot.queryParamMap.get('card');
-    if(cardName) {
+    if (cardName) {
       this.searchQuery = cardName;
       this.isSearchHidden = true;
     }
