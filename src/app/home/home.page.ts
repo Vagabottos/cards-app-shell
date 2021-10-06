@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-home',
@@ -33,7 +35,9 @@ export class HomePage implements OnInit {
   }
 
   constructor(
-    private translate: TranslateService
+    private toast: ToastController,
+    private translate: TranslateService,
+    private clipboard: ClipboardService
   ) {}
 
   ngOnInit() {
@@ -121,6 +125,26 @@ export class HomePage implements OnInit {
     this.searchQuery = value;
 
     this.updateCards();
+  }
+
+  public async copyFAQ(cardName: string) {
+    const faq = this.faqHash[cardName];
+    if (!faq) { return; }
+
+    let text = ``;
+
+    faq.forEach((entry, i) => {
+      text += `Q: ${entry.q}\nA: ${entry.a}`;
+    });
+
+    this.clipboard.copy(text)
+
+    const toast = await this.toast.create({
+      message: 'Copied FAQ to clipboard!',
+      duration: 2000
+    });
+
+    toast.present();
   }
 
   private async loadFAQ() {

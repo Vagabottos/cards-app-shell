@@ -8,6 +8,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
+import { ClipboardModule } from 'ngx-clipboard';
+
 import { Observable, of } from 'rxjs';
 
 import { AppComponent } from './app.component';
@@ -36,6 +38,8 @@ export class JSONLoader implements TranslateLoader {
         useClass: JSONLoader
       }
     }),
+    
+    ClipboardModule,
 
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
   providers: [

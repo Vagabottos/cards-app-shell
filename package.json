@@ -29,6 +29,7 @@
     "@ionic/angular": "^4.11.13",
     "@ngx-translate/core": "^12.1.2",
     "core-js": "^2.5.4",
+    "ngx-clipboard": "^14.0.1",
     "ngx-tippy-wrapper": "^2.1.0",
     "rxjs": "~6.4.0",
     "tslib": "^2.1.0",
