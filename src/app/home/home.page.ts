@@ -133,7 +133,7 @@ export class HomePage implements OnInit {
 
     let text = ``;
 
-    faq.forEach((entry, i) => {
+    faq.forEach((entry) => {
       text += `Q: ${entry.q}\nA: ${entry.a}`;
     });
 
