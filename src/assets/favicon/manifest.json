@@ -1,6 +1,11 @@
 {
     "name": "$AppTitle$",
     "short_name": "$AppShortTitle$",
+    "theme_color": "$AppThemeColor$",
+    "background_color": "$AppThemeColor$",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
     "icons": [
         {
             "src": "android-chrome-192x192.png",
@@ -12,8 +17,5 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ],
-    "theme_color": "$AppThemeColor$",
-    "background_color": "$AppThemeColor$",
-    "display": "standalone"
+    ]
 }

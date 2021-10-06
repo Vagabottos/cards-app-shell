@@ -58,7 +58,7 @@
         <span (click)="copyFAQ(card.name)" class="faq" *ngIf="faqHash[card.name]" [tippyProps]="{ allowHTML: true, content: tippyFor(faqHash[card.name]) }" ngxTippy>[{{ 'App.FAQ' | translate }}]</span>
       </div>
 
-      <ion-img [src]="'assets/cards/' + card.image + '.png'"></ion-img>
+      <ion-img [src]="'assets/cards/' + card.image + '.webp'" [alt]="('Card.' + card.name | translate) + ' - ' + ('CardDesc.' + card.name | translate)"></ion-img>
     </div>
   </div>
 
