@@ -38,7 +38,7 @@ export class JSONLoader implements TranslateLoader {
         useClass: JSONLoader
       }
     }),
-    
+
     ClipboardModule,
 
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],

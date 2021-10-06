@@ -137,7 +137,7 @@ export class HomePage implements OnInit {
       text += `Q: ${entry.q}\nA: ${entry.a}`;
     });
 
-    this.clipboard.copy(text)
+    this.clipboard.copy(text);
 
     const toast = await this.toast.create({
       message: 'Copied FAQ to clipboard!',
