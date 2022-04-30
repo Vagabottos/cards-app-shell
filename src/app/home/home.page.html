@@ -5,10 +5,10 @@
     </ion-buttons>
 
     <ion-title *ngIf="!isSearchOpen">
-      {{ 'App.Title' | translate }}
+      <a class="no-link" href="?">{{ 'App.Title' | translate }}</a>
     </ion-title>
 
-    <ion-searchbar *ngIf="isSearchOpen"
+    <ion-searchbar *ngIf="isSearchOpen && !isSearchHidden"
                    color="primary"
                    showCancelButton="focus"
                    debounce="300"
@@ -18,7 +18,7 @@
                    [placeholder]="'App.Search' | translate"></ion-searchbar>
 
     <ion-buttons slot="end">
-      <ion-button (click)="toggleSearch()">
+      <ion-button (click)="toggleSearch()" *ngIf="!isSearchHidden">
         <ion-icon name="search" slot="icon-only"></ion-icon>
       </ion-button>
 
@@ -27,8 +27,8 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-select slot="end" 
-                [placeholder]="'App.CardSet' | translate" 
+    <ion-select slot="end"
+                [placeholder]="'App.CardSet' | translate"
                 [interfaceOptions]="{ header: 'Select Card Set' }"
                 (ionChange)="updateCards()"
                 *ngIf="!isSearchOpen"
@@ -37,9 +37,9 @@
       <ion-select-option [value]="set" *ngFor="let set of allSets">{{ 'Set.' + set | translate }}</ion-select-option>
     </ion-select>
 
-    <ion-select slot="end" 
-                [placeholder]="'App.Language' | translate" 
-                (ionChange)="languageChange()" 
+    <ion-select slot="end"
+                [placeholder]="'App.Language' | translate"
+                (ionChange)="languageChange()"
                 [interfaceOptions]="{ header: 'Select Language' }"
                 *ngIf="allLanguages.length > 1 && !isSearchOpen"
                 [(ngModel)]="language">
@@ -49,7 +49,7 @@
 </ion-header>
 
 <ion-content>
-  
+
   <div class="card-container">
     <div class="img-container" *ngFor="let card of visibleCards" [ngClass]="[card.imageClass || 'similar']">
       <div class="img-text">
@@ -58,7 +58,9 @@
         <span (click)="copyFAQ(card.name)" class="faq" *ngIf="faqHash[card.name]" [tippyProps]="{ allowHTML: true, content: tippyFor(faqHash[card.name]) }" ngxTippy>[{{ 'App.FAQ' | translate }}]</span>
       </div>
 
-      <ion-img [src]="'assets/cards/' + card.image + '.webp'" [alt]="('Card.' + card.name | translate) + ' - ' + ('CardDesc.' + card.name | translate)"></ion-img>
+      <a class="card" target="blank" [href]="'?card=' + card.name">
+        <ion-img [src]="'assets/cards/' + card.image + '.webp'" [alt]="('Card.' + card.name | translate) + ' - ' + ('CardDesc.' + card.name | translate)"></ion-img>
+      </a>
     </div>
   </div>
 

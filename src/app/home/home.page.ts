@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { ClipboardService } from 'ngx-clipboard';
@@ -16,6 +17,7 @@ export class HomePage implements OnInit {
   public visibleCards: any[] = [];
   public faqHash = {};
   public isSearchOpen = false;
+  public isSearchHidden = false;
   public searchQuery = '';
 
   public get allLanguages() {
@@ -35,12 +37,20 @@ export class HomePage implements OnInit {
   }
 
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private toast: ToastController,
     private translate: TranslateService,
     private clipboard: ClipboardService
   ) {}
 
   ngOnInit() {
+    const cardName = this.route.snapshot.queryParamMap.get('card');
+    if (cardName) {
+      this.searchQuery = cardName;
+      this.isSearchHidden = true;
+    }
+
     this.language = localStorage.getItem('lang');
     if (!this.language) {
       const baseLang = navigator.language || 'en-US';
@@ -125,6 +135,11 @@ export class HomePage implements OnInit {
     this.searchQuery = value;
 
     this.updateCards();
+  }
+
+  public viewSingleCard(card: string) {
+    this.searchQuery = card;
+    this.router.navigate(['/'], { queryParams: { card }});
   }
 
   public async copyFAQ(cardName: string) {
