@@ -182,11 +182,11 @@ export class HomePage implements OnInit {
   private loadSets() {
     const sets = new Set<string>();
     this.allCards.forEach(card => {
-      if(!card.set) {
+      if (!card.set) {
         console.error('no set', card);
         return;
       }
-      
+
       card.set.forEach(set => sets.add(set));
     });
 
