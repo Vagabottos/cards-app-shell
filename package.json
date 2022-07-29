@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Kyle Kemp <kyle@seiyria.com>",
   "engines": {
-    "node": "10.9.0"
+    "node": ">=12"
   },
   "scripts": {
     "ng": "ng",
