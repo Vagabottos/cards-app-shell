@@ -60,7 +60,7 @@ export class HomePage implements OnInit {
       const baseLang = navigator.language || 'en-US';
       if (baseLang.split('-')[0] === 'fr') {
         this.language = 'fr-FR';
-      } else if(baseLang.split('-')[0] === 'it') {
+      } else if (baseLang.split('-')[0] === 'it') {
         this.language = 'it-IT';
       } else {
         this.language = 'en-US';
@@ -118,7 +118,7 @@ export class HomePage implements OnInit {
     if (this.searchQuery) {
       this.visibleCards = this.visibleCards.filter(x => {
         const cardRef = cardsByName[x.name];
-        if (!cardRef) return false;
+        if (!cardRef) { return false; }
 
         return cardRef.toLowerCase().includes(this.searchQuery.toLowerCase());
       });
