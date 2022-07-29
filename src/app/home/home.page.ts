@@ -36,6 +36,10 @@ export class HomePage implements OnInit {
     return (window as any).__config.AppFAQRequest[this.language];
   }
 
+  public get currenti18n() {
+    return (window as any).__i18n[this.language];
+  }
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -56,6 +60,8 @@ export class HomePage implements OnInit {
       const baseLang = navigator.language || 'en-US';
       if (baseLang.split('-')[0] === 'fr') {
         this.language = 'fr-FR';
+      } else if(baseLang.split('-')[0] === 'it') {
+        this.language = 'it-IT';
       } else {
         this.language = 'en-US';
       }
@@ -101,6 +107,8 @@ export class HomePage implements OnInit {
   }
 
   public updateCards() {
+    const cardsByName = this.currenti18n.Card;
+
     this.visibleCards = this.allCards.slice();
 
     if (this.cardSet !== 'All') {
@@ -108,7 +116,12 @@ export class HomePage implements OnInit {
     }
 
     if (this.searchQuery) {
-      this.visibleCards = this.visibleCards.filter(x => x.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
+      this.visibleCards = this.visibleCards.filter(x => {
+        const cardRef = cardsByName[x.name];
+        if (!cardRef) return false;
+
+        return cardRef.toLowerCase().includes(this.searchQuery.toLowerCase());
+      });
     }
   }
 
