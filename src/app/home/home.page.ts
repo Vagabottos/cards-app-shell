@@ -37,7 +37,7 @@ export class HomePage implements OnInit {
   }
 
   public get currenti18n() {
-    return (window as any).__i18n[this.language];
+    return (window as any).__i18n[this.language] || (window as any).__i18n['en-US'];
   }
 
   constructor(
