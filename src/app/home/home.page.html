@@ -59,7 +59,7 @@
       </div>
 
       <a class="card" target="blank" [href]="'?card=' + card.name">
-        <ion-img [src]="'assets/cards/' + card.image + '.webp'" [alt]="('Card.' + card.name | translate) + ' - ' + ('CardDesc.' + card.name | translate)"></ion-img>
+        <ion-img [src]="'assets/cards/' + card.image + '.webp'" [alt]="('Card.' + card.name | translate) + ' - ' + ('CardDesc.' + card.name | translate)" [title]="('Card.' + card.name | translate) + ' - ' + ('CardDesc.' + card.name | translate)"></ion-img>
       </a>
     </div>
   </div>
